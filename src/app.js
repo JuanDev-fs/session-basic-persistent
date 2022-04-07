@@ -3,21 +3,24 @@ const app = express()
 const PORT = 3000
 const router = require('../routes/routes')
 
-const sessions = require('express-session');
+/* const sessions = require('express-session');
 const unDia = 1000*60*60*24;
-const unMinuto = 1000*60;
+const unMinuto = 1000*60; */
 
 //SET
 app.set('view engine','ejs')
 
 
 //USE
-app.use(sessions({
+/* app.use(sessions({
     secret: "123456",
 	saveUninitialized:true,
 	resave: false,
 	cookie: { maxAge:unDia }
-}));
+})); */
+/* const appPepe = require('./middleware/cookieLogin')
+console.log(appPepe); */
+app.use(require('./middleware/cookieLogin'))
 
 app.use('/',router)
 

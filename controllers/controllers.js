@@ -1,5 +1,7 @@
 const userData = {username:"jose",password:"12345"}
 var session
+//const inicioSesion = require('../src/middleware/cookieLogin')
+
 
 const menu = {
 
@@ -10,10 +12,10 @@ home : (req,res)=>{
 login : (req,res)=>{
     session=req.session;
     console.log(session);
-    if(session.userid){
+    /* if(session.userid){
         let nombre = session.userid
         return res.render('./vistas/success',{nombre:nombre});
-    } 
+    } */ 
         res.render('./vistas/login')
 },
 
@@ -21,6 +23,8 @@ procesarLogin : (req,res)=>{
     const {nombre,password} = req.body
     /* const user = {nombre,password} */
     if(nombre==userData.username && password ==userData.password){
+        inicioSesion();
+
         session = req.session
         session.userid = nombre
         console.log(session);
