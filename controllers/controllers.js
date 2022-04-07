@@ -9,9 +9,9 @@ const login = (req,res)=>{
     console.log(session);
     if(session.userid){
         let nombre = session.userid
-        res.render('./vistas/success',{nombre:nombre});
-    }
-         res.render('./vistas/login')
+        return res.render('./vistas/success',{nombre:nombre});
+    } 
+        res.render('./vistas/login')
 }
 
 const procesarLogin = (req,res)=>{
@@ -21,9 +21,9 @@ const procesarLogin = (req,res)=>{
         session = req.session
         session.userid = nombre
         console.log(session);
-        res.render('./vistas/success',{nombre:nombre})
-    }
-    res.send('usuario incorrecto')
+        return res.render('./vistas/success',{nombre:nombre})
+    } 
+        res.send('usuario incorrecto')
 
 } 
 
