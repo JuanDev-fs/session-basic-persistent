@@ -1,10 +1,13 @@
 const userData = {username:"jose",password:"12345"}
 var session
-const home = (req,res)=>{
-    res.render('./vistas/home')
-}
 
-const login = (req,res)=>{
+const menu = {
+
+home : (req,res)=>{
+    res.render('./vistas/home')
+},
+
+login : (req,res)=>{
     session=req.session;
     console.log(session);
     if(session.userid){
@@ -12,9 +15,9 @@ const login = (req,res)=>{
         return res.render('./vistas/success',{nombre:nombre});
     } 
         res.render('./vistas/login')
-}
+},
 
-const procesarLogin = (req,res)=>{
+procesarLogin : (req,res)=>{
     const {nombre,password} = req.body
     /* const user = {nombre,password} */
     if(nombre==userData.username && password ==userData.password){
@@ -25,11 +28,16 @@ const procesarLogin = (req,res)=>{
     } 
         res.send('usuario incorrecto')
 
-} 
+} ,
 
-const logout = (req,res)=>{
+logout : (req,res)=>{
     req.session.destroy();
     res.redirect('/')
 }
 
-module.exports={home,login, procesarLogin,logout}
+
+}
+
+
+// module.exports={home,login, procesarLogin,logout}
+module.exports=menu

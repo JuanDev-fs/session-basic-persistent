@@ -3,14 +3,14 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 router.use(bodyParser.urlencoded({extended:true}));
 
+const menu= require('../controllers/controllers')
 
-
-const {home,login,procesarLogin,logout}= require('../controllers/controllers')
+// const {home,login,procesarLogin,logout}= require('../controllers/controllers')
 
 router
-    .get('/',home)
-    .get('/usuarios',login)
-    .post('/usuarios',procesarLogin)
-    .get('/logout',logout)
+    .get('/',menu.home)
+    .get('/usuarios',menu.login)
+    .post('/usuarios',menu.procesarLogin)
+    .get('/logout',menu.logout)
 
 module.exports=router
